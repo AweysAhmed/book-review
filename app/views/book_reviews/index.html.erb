@@ -1,1 +1,17 @@
-<h1>Does this display</h1>
+<div class="jumbotron">
+  <h1>Book Reviews</h1>
+  <%= link_to "Create Book Review", new_book_review_path, class: "btn btn-primary"%>
+</div>
+<% @book_reviews.each do |book| %>
+  <div class="card">
+    <div class="card-body">
+      <h1><%= link_to book.title, book %></h1>
+      <h3><%= book.first_name %></h3>
+      <h3><%= book.last_name %></h3>
+      <p><%= truncate (book.review), length: 200 %></p>
+      <p>Created: <%= time_ago_in_words(book.created_at) %></p>
+      <p>Rating: <%= book.rating %></p>
+    </div>
+  </div>
+  <br />
+<% end %>
