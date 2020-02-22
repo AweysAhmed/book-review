@@ -7,4 +7,5 @@ class BookReview < ApplicationRecord
   validates :last_name, presence: true
   validates :review, presence: true
   validates :rating, presence: true
+  belongs_to :user
 end

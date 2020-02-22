@@ -10,11 +10,11 @@ class BookReviewsController < ApplicationController
   end
 
   def new
-    @book_review = BookReview.new
+    @book_review = current_user.book_reviews.build
   end
 
   def create
-    @book_review = BookReview.new(book_review_params)
+    @book_review = current_user.book_reviews.build(book_review_params)
     if @book_review.save
       redirect_to @book_review
     else
@@ -45,6 +45,7 @@ class BookReviewsController < ApplicationController
   end
 
   def book_review_params
-    params.require(:book_review).permit(:title, :first_name, :last_name, :review, :rating)
+    params.require(:book_review)
+          .permit(:title, :first_name, :last_name, :review, :rating)
   end
 end
