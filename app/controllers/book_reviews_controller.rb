@@ -3,7 +3,7 @@
 class BookReviewsController < ApplicationController
   before_action :find_book_review, only: %i[show edit update destroy]
   def index
-    @book_reviews = BookReview.all.order('created_at DESC')
+    @book_reviews = BookReview.where(user_id: current_user)
   end
 
   def show

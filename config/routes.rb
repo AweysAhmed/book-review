@@ -2,7 +2,10 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'book_reviews#index'
+  resources :static_pages
+  root 'static_pages#index'
   resources :book_reviews
+  authenticated :user do
+    root 'book_reviews#index', as: 'authenticated_root'
+  end
 end
