@@ -13,9 +13,11 @@
       </nav>
       <nav>
         <% if user_signed_in? %>
+          <%= link_to "Reviews", book_reviews_path, class: 'navbar-brand'  %>
           <%= link_to "Create Review", new_book_review_path, class: 'navbar-brand'  %>
           <%= link_to "Sign Out", destroy_user_session_path, class: 'navbar-brand',  method: :delete %>
         <% else %>
+          <%= link_to "Sign up", new_user_registration_path, class: 'navbar-brand' %>
           <%= link_to "Log in", new_user_session_path, class: 'navbar-brand' %>
         <%end%>
       </nav>
