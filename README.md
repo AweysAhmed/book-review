@@ -1,6 +1,6 @@
 # Book Review app
 
-Building a Book Review APP suing
+Building a Book Review APP using
 
 <ul>
   <li>Rails</li>
