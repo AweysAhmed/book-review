@@ -11,7 +11,7 @@ class BookReview < ApplicationRecord
 
   def self.search(search)
     if search
-      book_reviews = BookReview.find_by(title: search)
+      book_reviews = BookReview.where('title like ?', "%#{search}%")
       if book_reviews
         where(id: book_reviews)
       else
