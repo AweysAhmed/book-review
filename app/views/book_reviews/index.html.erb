@@ -1,13 +1,22 @@
 <div class="jumbotron">
   <h1>Book Reviews</h1>
-  <%= link_to "Create Book Review", new_book_review_path, class: "btn btn-primary"%>
+  <%= link_to  "All Reviews", book_reviews_path, class: "btn btn-primary" %>
+  <%= link_to "Create Book Review", new_book_review_path, class: "btn btn-primary" %>
 </div>
+<div class="col-5">
+  <%= form_with url: book_reviews_path, method: :get, local: true  do |form| %>
+    <%= form.label :search, "Search Books:"%>
+    <%= form.text_field :search, id: :search, class: "form-control" %>
+    <br />
+    <%= form.submit "Submit", class: 'btn btn-primary'%>
+  <%end%>
+</div>
+<br />
 <% @book_reviews.each do |book| %>
   <div class="card">
     <div class="card-body">
       <h1><%= link_to book.title, book %></h1>
-      <h3><%= book.first_name %></h3>
-      <h3><%= book.last_name %></h3>
+      <h3><%= book.first_name %> <%= book.last_name %></h3>
       <p><%= truncate (book.review), length: 200 %></p>
       <p>Created: <%= time_ago_in_words(book.created_at) %></p>
       <p>Rating: <%= book.rating %></p>

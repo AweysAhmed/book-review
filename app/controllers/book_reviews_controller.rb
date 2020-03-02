@@ -3,7 +3,7 @@
 class BookReviewsController < ApplicationController
   before_action :find_book_review, only: %i[show edit update destroy]
   def index
-    @book_reviews = BookReview.where(user_id: current_user)
+    @book_reviews = BookReview.search(params[:search])
   end
 
   def show
@@ -46,6 +46,6 @@ class BookReviewsController < ApplicationController
 
   def book_review_params
     params.require(:book_review)
-          .permit(:title, :first_name, :last_name, :review, :rating)
+          .permit(:title, :first_name, :last_name, :review, :rating, :search)
   end
 end
