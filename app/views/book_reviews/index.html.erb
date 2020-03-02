@@ -1,11 +1,16 @@
 <div class="jumbotron">
   <h1>Book Reviews</h1>
-  <%= link_to "Create Book Review", new_book_review_path, class: "btn btn-primary"%>
+  <%= link_to  "All Reviews", book_reviews_path, class: "btn btn-primary" %>
+  <%= link_to "Create Book Review", new_book_review_path, class: "btn btn-primary" %>
 </div>
-<%= form_tag(book_reviews_path, method: :get) do %>
-  <%= text_field_tag(:search, params[:search]) %>
-  <%= submit_tag ("Search"), class: "btn btn-primary" %>
-<% end %>
+<div class="col-5">
+  <%= form_with url: book_reviews_path, method: :get, local: true  do |form| %>
+    <%= form.label :search, "Search Books:"%>
+    <%= form.text_field :search, id: :search, class: "form-control" %>
+    <br />
+    <%= form.submit "Submit", class: 'btn btn-primary'%>
+  <%end%>
+</div>
 <br />
 <% @book_reviews.each do |book| %>
   <div class="card">

@@ -12,7 +12,7 @@ class BookReview < ApplicationRecord
   def self.search(search)
     if search
       book_reviews = BookReview.where('title like ?', "%#{search}%")
-      if book_reviews
+      if book_reviews.present?
         where(id: book_reviews)
       else
         all
