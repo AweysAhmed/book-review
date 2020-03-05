@@ -6,12 +6,12 @@ class BookReview < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :review, presence: true
-  validates :rating, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }, presence: true
+  validates :rating, presence: true
   belongs_to :user
 
   def self.search(search)
     if search
-      book_reviews = BookReview.where('title like ?', "%#{search}%")
+      book_reviews = BookReview.where('title LIKE ?', "%#{search}%")
       if book_reviews.present?
         where(id: book_reviews)
       else
