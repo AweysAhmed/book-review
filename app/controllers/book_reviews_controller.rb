@@ -7,6 +7,7 @@ class BookReviewsController < ApplicationController
   end
 
   def show
+    # this is setu in the before_action
   end
 
   def new
@@ -23,6 +24,7 @@ class BookReviewsController < ApplicationController
   end
 
   def edit
+    # this is setu in the before_action
   end
 
   def update
