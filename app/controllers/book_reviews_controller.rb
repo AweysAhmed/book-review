@@ -3,7 +3,7 @@
 class BookReviewsController < ApplicationController
   before_action :find_book_review, only: %i[show edit update destroy]
   def index
-    @book_reviews = BookReview.search(params[:search])
+    @book_reviews = BookReview.advanced_search(params[:search])
   end
 
   def show
