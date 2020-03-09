@@ -16,5 +16,6 @@ class BookReview < ApplicationRecord
     else
       all
     end
+    all
   end
 end
