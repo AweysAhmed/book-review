@@ -2,6 +2,7 @@
 
 # BookReview Model with validations
 class BookReview < ApplicationRecord
+  searchkick
   validates :title, length: { minimum: 2 }, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -9,16 +10,12 @@ class BookReview < ApplicationRecord
   validates :rating, presence: true
   belongs_to :user
 
-  def self.search(search)
-    if search
-      book_reviews = BookReview.where('title LIKE ?', "%#{search}%")
-      if book_reviews.present?
-        where(id: book_reviews)
-      else
-        all
-      end
+  def self.advanced_search(search_results)
+    if search_results
+      BookReview.search(search_results, fields: [:title])
     else
       all
     end
+    all
   end
 end
